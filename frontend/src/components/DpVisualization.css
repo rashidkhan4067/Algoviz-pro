@@ -1,0 +1,230 @@
+/* Dynamic Programming Visualizer Modular Stylesheet */
+
+:root {
+  --dp-cell-bg: rgba(15, 22, 40, 0.45);
+  --dp-cell-border: rgba(255, 255, 255, 0.08);
+  --dp-text-main: #f8fafc;
+  --dp-text-muted: #94a3b8;
+  
+  /* State Colors */
+  --dp-color-active: #c084fc;
+  --dp-color-visited: #4ade80;
+  --dp-color-compare: #fbbf24;
+  --dp-color-select: #38bdf8;
+  --dp-color-dim: rgba(255, 255, 255, 0.03);
+}
+
+.dp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+}
+
+/* 1D Fibonacci Array visualization */
+.fib-array {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 18px;
+}
+
+.fib-cell {
+  width: 64px;
+  height: 70px;
+  border-radius: 12px;
+  background: rgba(15, 18, 36, 0.7);
+  border: 1px solid var(--dp-cell-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fib-cell .cell-index {
+  font-size: 11px;
+  color: var(--dp-text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 4px;
+}
+
+.fib-cell .cell-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dp-text-main);
+  font-family: var(--font-mono);
+}
+
+/* Fibonacci States */
+.fib-cell.state-active {
+  border-color: var(--dp-color-active);
+  background: rgba(192, 132, 252, 0.08);
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.2);
+  transform: translateY(-4px);
+}
+
+.fib-cell.state-source {
+  border-color: var(--dp-color-compare);
+  background: rgba(251, 191, 36, 0.08);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);
+}
+
+.fib-cell.state-complete {
+  border-color: var(--dp-color-visited);
+  background: rgba(74, 222, 128, 0.06);
+}
+
+/* 2D Knapsack Table Grid */
+.dp-table-wrapper {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(8, 10, 19, 0.6);
+  padding: 12px;
+  max-height: 380px;
+}
+
+.dp-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 6px;
+  font-family: var(--font-sans);
+}
+
+.dp-table th {
+  padding: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.dp-table td {
+  width: 50px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--dp-text-muted);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: help;
+}
+
+.dp-table td.row-label {
+  width: auto;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: var(--dp-text-main);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: default;
+}
+
+/* Cell States */
+.dp-table td.state-active {
+  background: rgba(192, 132, 252, 0.15);
+  border-color: var(--dp-color-active);
+  color: var(--dp-text-main);
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.3);
+  transform: scale(1.05);
+}
+
+.dp-table td.state-compare {
+  background: rgba(251, 191, 36, 0.12);
+  border-color: var(--dp-color-compare);
+  color: var(--dp-text-main);
+}
+
+.dp-table td.state-select {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--dp-color-select);
+  color: var(--dp-text-main);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+.dp-table td.state-filled {
+  color: #e2e8f0;
+}
+
+/* DP Interactive Summary Badge */
+.dp-summary-dock {
+  margin-top: 10px;
+  background: rgba(15, 18, 36, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 16px 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dp-summary-dock h4 {
+  font-size: 14px;
+  color: var(--dp-color-select);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.dp-desc {
+  font-size: 14px;
+  color: var(--dp-text-main);
+  line-height: 1.5;
+  font-family: var(--font-sans);
+}
+
+.dp-equation {
+  font-family: var(--font-mono);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--dp-text-main);
+}
+
+.dp-equation span.act { color: var(--dp-color-active); font-weight: 700; }
+.dp-equation span.src { color: var(--dp-color-compare); font-weight: 700; }
+.dp-equation span.res { color: var(--dp-color-visited); font-weight: 700; }
+
+.knapsack-items {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.knapsack-item-badge {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: var(--dp-color-select);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.knapsack-item-badge.selected {
+  background: rgba(74, 222, 128, 0.12);
+  border-color: rgba(74, 222, 128, 0.3);
+  color: var(--dp-color-visited);
+}
